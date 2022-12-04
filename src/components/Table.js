@@ -4,7 +4,7 @@ import PlanetsContext from '../context/PlanetsContext';
 function Table() {
   const { data, searchItem } = useContext(PlanetsContext);
   const [filter, setFilter] = useState([]);
-
+  // console.log(filter.length);
   const handleFilter = () => {
     const dataFilter = data.filter((el) => (
       el.name.toLowerCase().includes(searchItem.toLowerCase())));
@@ -35,23 +35,41 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        {data && filter.map((el) => (
-          <tr key={ el.name }>
-            <td>{el.name}</td>
-            <td>{el.rotation_period}</td>
-            <td>{el.orbital_period}</td>
-            <td>{el.diameter}</td>
-            <td>{el.climate}</td>
-            <td>{el.gravity}</td>
-            <td>{el.terrain}</td>
-            <td>{el.surface_water}</td>
-            <td>{el.population}</td>
-            <td>{el.films}</td>
-            <td>{el.created}</td>
-            <td>{el.edited}</td>
-            <td>{el.url}</td>
-          </tr>
-        ))}
+        {filter.length === 0
+          ? (data.map((el1) => (
+            <tr key={ el1.name }>
+              <td>{el1.name}</td>
+              <td>{el1.rotation_period}</td>
+              <td>{el1.orbital_period}</td>
+              <td>{el1.diameter}</td>
+              <td>{el1.climate}</td>
+              <td>{el1.gravity}</td>
+              <td>{el1.terrain}</td>
+              <td>{el1.surface_water}</td>
+              <td>{el1.population}</td>
+              <td>{el1.films}</td>
+              <td>{el1.created}</td>
+              <td>{el1.edited}</td>
+              <td>{el1.url}</td>
+            </tr>
+          )))
+          : (filter.map((el2) => (
+            <tr key={ el2.name }>
+              <td>{el2.name}</td>
+              <td>{el2.rotation_period}</td>
+              <td>{el2.orbital_period}</td>
+              <td>{el2.diameter}</td>
+              <td>{el2.climate}</td>
+              <td>{el2.gravity}</td>
+              <td>{el2.terrain}</td>
+              <td>{el2.surface_water}</td>
+              <td>{el2.population}</td>
+              <td>{el2.films}</td>
+              <td>{el2.created}</td>
+              <td>{el2.edited}</td>
+              <td>{el2.url}</td>
+            </tr>
+          )))}
       </tbody>
     </table>
   );

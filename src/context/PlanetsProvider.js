@@ -6,8 +6,13 @@ function PlanetsProvider({ children }) {
   const [data, setData] = useState([]);
   const [searchItem, setSearchItem] = useState('');
 
+  const api = async () => {
+    const planetsData = await planetsAPI();
+    setData(planetsData);
+  };
+
   useEffect(() => {
-    planetsAPI().then((results) => setData(results));
+    api();
   }, []);
 
   const value = useMemo(() => ({
