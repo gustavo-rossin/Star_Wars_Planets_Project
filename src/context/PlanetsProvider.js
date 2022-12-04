@@ -4,6 +4,7 @@ import PlanetsContext from './PlanetsContext';
 
 function PlanetsProvider({ children }) {
   const [data, setData] = useState([]);
+  const [searchItem, setSearchItem] = useState('');
 
   useEffect(() => {
     planetsAPI().then((results) => setData(results));
@@ -11,7 +12,9 @@ function PlanetsProvider({ children }) {
 
   const value = useMemo(() => ({
     data,
-  }), [data]);
+    searchItem,
+    setSearchItem,
+  }), [data, searchItem, setSearchItem]);
 
   return (
     <PlanetsContext.Provider value={ value }>
@@ -21,5 +24,4 @@ function PlanetsProvider({ children }) {
 }
 
 PlanetsProvider.propTypes = {}.isRequired;
-
 export default PlanetsProvider;

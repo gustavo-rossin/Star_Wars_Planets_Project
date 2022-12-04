@@ -1,8 +1,20 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 
 function Table() {
-  const { data } = useContext(PlanetsContext);
+  const { data, searchItem } = useContext(PlanetsContext);
+  const [filter, setFilter] = useState([]);
+
+  const handleFilter = () => {
+    const dataFilter = data.filter((el) => (
+      el.name.toLowerCase().includes(searchItem.toLowerCase())));
+    setFilter(dataFilter);
+  };
+
+  useEffect(() => {
+    handleFilter();
+  }, [searchItem]);
+
   return (
     <table>
       <thead>
@@ -23,8 +35,8 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        {data.map((el) => (
-          <tr key={ el.id }>
+        {data && filter.map((el) => (
+          <tr key={ el.name }>
             <td>{el.name}</td>
             <td>{el.rotation_period}</td>
             <td>{el.orbital_period}</td>
