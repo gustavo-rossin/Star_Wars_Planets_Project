@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 
 function Header() {
-  const { setSearchItem } = useContext(PlanetsContext);
+  const { setSearchPlanet } = useContext(PlanetsContext);
 
   return (
     <div style={ { textAlign: 'center' } }>
@@ -13,7 +13,7 @@ function Header() {
           placeholder="Pesquisar"
           type="text"
           data-testid="name-filter"
-          onChange={ ({ target }) => setSearchItem(target.value) }
+          onChange={ ({ target }) => setSearchPlanet(target.value) }
         />
       </label>
     </div>

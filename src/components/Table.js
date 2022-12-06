@@ -2,18 +2,18 @@ import { useContext, useEffect, useState } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 
 function Table() {
-  const { data, searchItem } = useContext(PlanetsContext);
-  const [filter, setFilter] = useState([]);
+  const { data, searchPlanet } = useContext(PlanetsContext);
+  const [filteredSelection, setFilteredSelection] = useState([]);
   // console.log(filter.length);
   const handleFilter = () => {
     const dataFilter = data.filter((el) => (
-      el.name.toLowerCase().includes(searchItem.toLowerCase())));
-    setFilter(dataFilter);
+      el.name.toLowerCase().includes(searchPlanet.toLowerCase())));
+    setFilteredSelection(dataFilter);
   };
 
   useEffect(() => {
     handleFilter();
-  }, [searchItem]);
+  }, [searchPlanet]);
 
   return (
     <table>
@@ -35,7 +35,7 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        {filter.length === 0
+        {filteredSelection.length === 0
           ? (data.map((el1) => (
             <tr key={ el1.name }>
               <td>{el1.name}</td>
@@ -53,7 +53,7 @@ function Table() {
               <td>{el1.url}</td>
             </tr>
           )))
-          : (filter.map((el2) => (
+          : (filteredSelection.map((el2) => (
             <tr key={ el2.name }>
               <td>{el2.name}</td>
               <td>{el2.rotation_period}</td>

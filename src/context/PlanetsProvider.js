@@ -4,7 +4,7 @@ import PlanetsContext from './PlanetsContext';
 
 function PlanetsProvider({ children }) {
   const [data, setData] = useState([]);
-  const [searchItem, setSearchItem] = useState('');
+  const [searchPlanet, setSearchPlanet] = useState('');
 
   const api = async () => {
     const planetsData = await planetsAPI();
@@ -17,9 +17,9 @@ function PlanetsProvider({ children }) {
 
   const value = useMemo(() => ({
     data,
-    searchItem,
-    setSearchItem,
-  }), [data, searchItem, setSearchItem]);
+    searchPlanet,
+    setSearchPlanet,
+  }), [data, searchPlanet, setSearchPlanet]);
 
   return (
     <PlanetsContext.Provider value={ value }>
