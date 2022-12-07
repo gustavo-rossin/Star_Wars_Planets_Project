@@ -1,12 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 
 function Table() {
   const { data,
     searchPlanet,
     selectedFilter,
+    filteredSelection,
+    setFilteredSelection,
   } = useContext(PlanetsContext);
-  const [filteredSelection, setFilteredSelection] = useState([]);
   // console.log(filteredSelection.length);
 
   // acad logica tiago: aplicação de + ao invés de Number. E usar o switch ao invés de IF
