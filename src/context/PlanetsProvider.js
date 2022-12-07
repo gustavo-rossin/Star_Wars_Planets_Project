@@ -8,6 +8,8 @@ function PlanetsProvider({ children }) {
   const [selectedFilter, setSelectedFilter] = useState([]);
   const [filteredSelection, setFilteredSelection] = useState([]);
   const [checkFilters, setCheckFilters] = useState([]);
+  const [filteredColumn, setFilteredColumn] = useState('population');
+  const [order, setOrder] = useState('ASC');
 
   const [columnOptions, setColumnOptions] = useState([
     'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water',
@@ -43,6 +45,10 @@ function PlanetsProvider({ children }) {
     setCheckFilters,
     columnOptions,
     setColumnOptions,
+    filteredColumn,
+    setFilteredColumn,
+    order,
+    setOrder,
   }), [
     data,
     searchPlanet,
@@ -57,6 +63,10 @@ function PlanetsProvider({ children }) {
     setCheckFilters,
     columnOptions,
     setColumnOptions,
+    filteredColumn,
+    setFilteredColumn,
+    order,
+    setOrder,
   ]);
 
   return (

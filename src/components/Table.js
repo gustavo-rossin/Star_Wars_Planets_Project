@@ -60,7 +60,7 @@ function Table() {
           ? (data
             .map((el1) => (
               <tr key={ el1.name }>
-                <td>{el1.name}</td>
+                <td data-testid="planet-name">{el1.name}</td>
                 <td>{el1.rotation_period}</td>
                 <td>{el1.orbital_period}</td>
                 <td>{el1.diameter}</td>
@@ -79,7 +79,7 @@ function Table() {
             .filter((el) => el.name.toLowerCase().includes(searchPlanet.toLowerCase()))
             .map((el2) => (
               <tr key={ el2.name }>
-                <td>{el2.name}</td>
+                <td data-testid="planet-name">{el2.name}</td>
                 <td>{el2.rotation_period}</td>
                 <td>{el2.orbital_period}</td>
                 <td>{el2.diameter}</td>

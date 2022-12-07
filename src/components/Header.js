@@ -9,7 +9,14 @@ function Header() {
     checkFilters,
     setCheckFilters,
     columnOptions,
-    setColumnOptions } = useContext(PlanetsContext);
+    setColumnOptions,
+    filteredSelection,
+    setFilteredSelection,
+    filteredColumn,
+    setFilteredColumn,
+    order,
+    setOrder,
+  } = useContext(PlanetsContext);
 
   useEffect(() => {
     setSelected({
@@ -18,6 +25,29 @@ function Header() {
       value: 0,
     });
   }, [columnOptions]);
+
+  // Aula do Tiago da academia de lógica para fazer a questão 9.
+  const sortDataOrder = () => {
+    const MINUS_ONE = -1;
+    if (order === 'ASCENDER') {
+      const orderedPlanets = filteredSelection.sort((a, b) => {
+        if (b[filteredColumn] === 'unknown') {
+          return MINUS_ONE;
+        }
+        return a[filteredColumn] - b[filteredColumn];
+      });
+      setFilteredSelection([...orderedPlanets]);
+      console.log('teste', orderedPlanets);
+    } else if (order === 'DESCENDER') {
+      const orderedPlanets2 = filteredSelection.sort((a, b) => {
+        if (b[filteredColumn] === 'unknown') {
+          return MINUS_ONE;
+        }
+        return b[filteredColumn] - a[filteredColumn];
+      });
+      setFilteredSelection([...orderedPlanets2]);
+    }
+  };
 
   // Academia de Lógica do Tiago.
 
@@ -101,6 +131,47 @@ function Header() {
         >
           Filtrar
         </button>
+
+        <select
+          onChange={ ({ target }) => setFilteredColumn(target.value) }
+          data-testid="column-sort"
+        >
+          { columnOptions.map((e) => <option key={ e } value={ e }>{e}</option>)}
+        </select>
+
+        <div>
+          <label htmlFor="ASCENDER">
+            Ascendente
+            <input
+              type="radio"
+              data-testid="column-sort-input-asc"
+              name="ordenar"
+              value="ASCENDER"
+              id="ASCENDER"
+              onChange={ ({ target }) => setOrder(target.value) }
+            />
+          </label>
+
+          <label htmlFor="DESCENDER">
+            Descendente
+            <input
+              type="radio"
+              data-testid="column-sort-input-desc"
+              name="ordenar"
+              value="DESCENDER"
+              onChange={ ({ target }) => setOrder(target.value) }
+              id="DESCENDER"
+            />
+          </label>
+
+          <button
+            data-testid="column-sort-button"
+            type="button"
+            onClick={ sortDataOrder }
+          >
+            Ordenar
+          </button>
+        </div>
         <div style={ cssFilters }>
           { checkFilters.map((e) => (
             <div key={ e.column }>
