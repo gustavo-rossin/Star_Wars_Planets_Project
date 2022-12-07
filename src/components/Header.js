@@ -95,6 +95,18 @@ function Header() {
         >
           Filtrar
         </button>
+        <div style={ { color: 'red', display: 'flex', textAlign: 'left' } }>
+          { checkFilters.map((e) => (
+            <div key={ e.column }>
+              <p style={ { display: 'inline-flex', padding: '10px' } }>
+                {`${e.column} | ${e.comparison} | ${e.value}`}
+              </p>
+              <button type="button">
+                Remover
+              </button>
+            </div>
+          ))}
+        </div>
       </form>
     </div>
   );
