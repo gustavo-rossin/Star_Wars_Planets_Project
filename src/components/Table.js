@@ -2,18 +2,45 @@ import { useContext, useEffect, useState } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 
 function Table() {
-  const { data, searchPlanet } = useContext(PlanetsContext);
+  const { data,
+    searchPlanet,
+    selectedFilter,
+  } = useContext(PlanetsContext);
   const [filteredSelection, setFilteredSelection] = useState([]);
-  // console.log(filter.length);
+  // console.log(filteredSelection.length);
+
+  // acad logica tiago: aplicação de + ao invés de Number. E usar o switch ao invés de IF
+  const handleDataInfo = (arr) => {
+    let newArr = [];
+
+    switch (selectedFilter.comparison) {
+    case 'maior que':
+      newArr = arr.filter((e) => +e[selectedFilter.column] > +selectedFilter.value);
+      break;
+
+    case 'menor que':
+      newArr = arr.filter((e) => +e[selectedFilter.column] < +selectedFilter.value);
+      break;
+
+    case 'igual a':
+      newArr = arr.filter((e) => +e[selectedFilter.column] === +selectedFilter.value);
+      break;
+    default:
+      newArr = arr;
+    }
+
+    return newArr;
+  };
+
   const handleFilter = () => {
     const dataFilter = data.filter((el) => (
       el.name.toLowerCase().includes(searchPlanet.toLowerCase())));
-    setFilteredSelection(dataFilter);
+    setFilteredSelection(handleDataInfo(dataFilter));
   };
 
   useEffect(() => {
     handleFilter();
-  }, [searchPlanet]);
+  }, [searchPlanet, selectedFilter]);
 
   return (
     <table>

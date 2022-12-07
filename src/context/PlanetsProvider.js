@@ -5,6 +5,7 @@ import PlanetsContext from './PlanetsContext';
 function PlanetsProvider({ children }) {
   const [data, setData] = useState([]);
   const [searchPlanet, setSearchPlanet] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState([]);
 
   const api = async () => {
     const planetsData = await planetsAPI();
@@ -19,7 +20,15 @@ function PlanetsProvider({ children }) {
     data,
     searchPlanet,
     setSearchPlanet,
-  }), [data, searchPlanet, setSearchPlanet]);
+    selectedFilter,
+    setSelectedFilter,
+  }), [
+    data,
+    searchPlanet,
+    setSearchPlanet,
+    selectedFilter,
+    setSelectedFilter,
+  ]);
 
   return (
     <PlanetsContext.Provider value={ value }>
