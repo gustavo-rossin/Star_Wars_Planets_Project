@@ -16,6 +16,7 @@ function PlanetsProvider({ children }) {
   const api = async () => {
     const planetsData = await planetsAPI();
     setData(planetsData);
+    setFilteredSelection(planetsData);
   };
 
   useEffect(() => {
