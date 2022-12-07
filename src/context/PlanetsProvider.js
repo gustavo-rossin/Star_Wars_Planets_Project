@@ -6,6 +6,11 @@ function PlanetsProvider({ children }) {
   const [data, setData] = useState([]);
   const [searchPlanet, setSearchPlanet] = useState('');
   const [selectedFilter, setSelectedFilter] = useState([]);
+  const [selected, setSelected] = useState({
+    column: 'population',
+    comparison: 'maior que',
+    value: 0,
+  });
 
   const api = async () => {
     const planetsData = await planetsAPI();
@@ -22,12 +27,16 @@ function PlanetsProvider({ children }) {
     setSearchPlanet,
     selectedFilter,
     setSelectedFilter,
+    selected,
+    setSelected,
   }), [
     data,
     searchPlanet,
     setSearchPlanet,
     selectedFilter,
     setSelectedFilter,
+    selected,
+    setSelected,
   ]);
 
   return (

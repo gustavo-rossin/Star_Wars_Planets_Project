@@ -1,20 +1,22 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 
 function Header() {
-  const { setSearchPlanet, setSelectedFilter } = useContext(PlanetsContext);
+  const { setSearchPlanet,
+    setSelectedFilter,
+    selected,
+    setSelected } = useContext(PlanetsContext);
   // Academia de Lógica do Tiago.
-  const [selected, setSelected] = useState({
-    column: 'population',
-    comparison: 'maior que',
-    value: 0,
-  });
 
   const handleChange = ({ target: { value, name } }) => {
     setSelected({
       ...selected,
       [name]: value,
     });
+  };
+
+  const handleSelectedFilter = () => {
+    setSelectedFilter(selected);
   };
 
   return (
@@ -66,7 +68,7 @@ function Header() {
         <button
           data-testid="button-filter"
           type="button"
-          onClick={ () => setSelectedFilter(selected) }
+          onClick={ handleSelectedFilter }
         >
           Filtrar
         </button>
