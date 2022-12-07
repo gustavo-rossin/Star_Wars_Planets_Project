@@ -7,6 +7,8 @@ function PlanetsProvider({ children }) {
   const [searchPlanet, setSearchPlanet] = useState('');
   const [selectedFilter, setSelectedFilter] = useState([]);
   const [filteredSelection, setFilteredSelection] = useState([]);
+  const [columnOptions, setColumnOptions] = useState([]);
+  const [checkFilters, setCheckFilters] = useState([]);
   const [selected, setSelected] = useState({
     column: 'population',
     comparison: 'maior que',
@@ -33,6 +35,10 @@ function PlanetsProvider({ children }) {
     setSelected,
     filteredSelection,
     setFilteredSelection,
+    checkFilters,
+    setCheckFilters,
+    columnOptions,
+    setColumnOptions,
   }), [
     data,
     searchPlanet,
@@ -43,6 +49,10 @@ function PlanetsProvider({ children }) {
     setSelected,
     filteredSelection,
     setFilteredSelection,
+    checkFilters,
+    setCheckFilters,
+    columnOptions,
+    setColumnOptions,
   ]);
 
   return (

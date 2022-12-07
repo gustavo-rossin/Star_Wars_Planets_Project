@@ -1,14 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 
 function Header() {
   const { setSearchPlanet,
     setSelectedFilter,
     selected,
-    setSelected } = useContext(PlanetsContext);
-  // const [numericInputs, setNumericInputs] = useState([]);
-  // const [columnOptions, setColumnOptions] = useState(['population', 'orbital_period',
-  //   'diameter', 'rotation_period', 'surface_water']);
+    setSelected,
+    checkFilters,
+    setCheckFilters,
+    columnOptions,
+    setColumnOptions } = useContext(PlanetsContext);
+
+  useEffect(() => {
+    setColumnOptions([
+      'population',
+      'orbital_period',
+      'diameter',
+      'rotation_period',
+      'surface_water',
+    ]);
+  }, []);
 
   // Academia de Lógica do Tiago.
 
@@ -19,8 +30,16 @@ function Header() {
     });
   };
 
+  const handleRepeatedFilter = () => {
+    setCheckFilters([...checkFilters, selected]);
+    const repeatedFilter = columnOptions.filter((el) => el !== selected.column);
+
+    setColumnOptions(repeatedFilter);
+  };
+
   const handleSelectedFilter = () => {
     setSelectedFilter(selected);
+    handleRepeatedFilter();
   };
 
   return (
@@ -44,11 +63,11 @@ function Header() {
           value={ selected.column }
           onChange={ handleChange }
         >
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+          { columnOptions.map(((el) => (
+            <option key={ el } value={ el }>
+              {el}
+            </option>
+          )))}
         </select>
 
         <select

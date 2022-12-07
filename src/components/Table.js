@@ -31,15 +31,8 @@ function Table() {
 
     return newArr;
   };
-  // acad de logica do Tiago para colocar multiplos filtros
-  // const handleFilter = () => {
-  //   const dataFilter = data.filter((el) => (
-  //     el.name.toLowerCase().includes(searchPlanet.toLowerCase())));
-  //   setFilteredSelection(handleDataInfo(dataFilter));
-  // };
 
   useEffect(() => {
-    // handleFilter();
     setFilteredSelection(handleDataInfo(filteredSelection));
   }, [searchPlanet, selectedFilter]);
 
