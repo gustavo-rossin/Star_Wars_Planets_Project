@@ -26,7 +26,7 @@ function Header() {
     });
   }, [columnOptions]);
 
-  // Aula do Tiago da academia de lógica para fazer a questão 9.
+  // Aula do Tiago da academia de lógica para fazer a questão 9
   const sortDataOrder = () => {
     const MINUS_ONE = -1;
     if (order === 'ASCENDER') {
