@@ -40,8 +40,7 @@ function Table() {
 
   useEffect(() => {
     // handleFilter();
-    setFilteredSelection(handleDataInfo(filteredSelection)
-      .filter((el) => el.name.toLowerCase().includes(searchPlanet.toLowerCase())));
+    setFilteredSelection(handleDataInfo(filteredSelection));
   }, [searchPlanet, selectedFilter]);
 
   return (
@@ -84,6 +83,7 @@ function Table() {
               </tr>
             )))
           : (filteredSelection
+            .filter((el) => el.name.toLowerCase().includes(searchPlanet.toLowerCase()))
             .map((el2) => (
               <tr key={ el2.name }>
                 <td>{el2.name}</td>

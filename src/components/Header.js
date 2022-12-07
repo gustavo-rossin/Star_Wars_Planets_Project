@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PlanetsContext from '../context/PlanetsContext';
 
 function Header() {
@@ -6,6 +6,10 @@ function Header() {
     setSelectedFilter,
     selected,
     setSelected } = useContext(PlanetsContext);
+  const [numericInputs, setNumericInputs] = useState([]);
+  const [columnOptions, setColumnOptions] = useState(['population', 'orbital_period',
+    'diameter', 'rotation_period', 'surface_water']);
+
   // Academia de Lógica do Tiago.
 
   const handleChange = ({ target: { value, name } }) => {
