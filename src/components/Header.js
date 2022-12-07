@@ -46,6 +46,7 @@ function Header() {
         return b[filteredColumn] - a[filteredColumn];
       });
       setFilteredSelection([...orderedPlanets2]);
+      console.log('teste', orderedPlanets2);
     }
   };
 

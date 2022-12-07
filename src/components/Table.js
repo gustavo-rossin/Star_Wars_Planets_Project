@@ -23,7 +23,6 @@ function Table() {
       break;
     case 'igual a':
       newArr = arr.filter((e) => +e[selectedFilter.column] === +selectedFilter.value);
-
       break;
     default:
       newArr = arr;
