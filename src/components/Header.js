@@ -12,14 +12,12 @@ function Header() {
     setColumnOptions } = useContext(PlanetsContext);
 
   useEffect(() => {
-    setColumnOptions([
-      'population',
-      'orbital_period',
-      'diameter',
-      'rotation_period',
-      'surface_water',
-    ]);
-  }, []);
+    setSelected({
+      column: 'population',
+      comparison: 'maior que',
+      value: 0,
+    });
+  }, [columnOptions]);
 
   // Academia de Lógica do Tiago.
 
@@ -32,6 +30,7 @@ function Header() {
 
   const handleRepeatedFilter = () => {
     setCheckFilters([...checkFilters, selected]);
+
     const repeatedFilter = columnOptions.filter((el) => el !== selected.column);
 
     setColumnOptions(repeatedFilter);
@@ -40,6 +39,13 @@ function Header() {
   const handleSelectedFilter = () => {
     setSelectedFilter(selected);
     handleRepeatedFilter();
+  };
+
+  const cssFilters = {
+    color: 'red',
+    display: 'flex',
+    textAlign: 'left',
+    flexDirection: 'column',
   };
 
   return (
@@ -95,10 +101,10 @@ function Header() {
         >
           Filtrar
         </button>
-        <div style={ { color: 'red', display: 'flex', textAlign: 'left' } }>
+        <div style={ cssFilters }>
           { checkFilters.map((e) => (
             <div key={ e.column }>
-              <p style={ { display: 'inline-flex', padding: '10px' } }>
+              <p style={ { display: 'inline-flex', padding: '5px' } }>
                 {`${e.column} | ${e.comparison} | ${e.value}`}
               </p>
               <button type="button">

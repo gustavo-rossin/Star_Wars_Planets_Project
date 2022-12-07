@@ -7,8 +7,12 @@ function PlanetsProvider({ children }) {
   const [searchPlanet, setSearchPlanet] = useState('');
   const [selectedFilter, setSelectedFilter] = useState([]);
   const [filteredSelection, setFilteredSelection] = useState([]);
-  const [columnOptions, setColumnOptions] = useState([]);
   const [checkFilters, setCheckFilters] = useState([]);
+
+  const [columnOptions, setColumnOptions] = useState([
+    'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water',
+  ]);
+
   const [selected, setSelected] = useState({
     column: 'population',
     comparison: 'maior que',
